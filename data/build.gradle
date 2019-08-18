@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+ext {
+    androidArchVersion = "2.1.0"
+}
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
+
+    }
+
+    buildTypes {
+        debug{
+            testCoverageEnabled true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation project(":domain")
+
+    // Room Database
+    implementation "androidx.room:room-runtime:$androidArchVersion"
+    implementation "androidx.room:room-rxjava2:$androidArchVersion"
+    kapt "androidx.room:room-compiler:$androidArchVersion"
+
+    // JUnit
+    testImplementation libs.junit
+
+    // Mockito Kotlin
+    testImplementation libs.mockitoKotlin
+
+}
+
+repositories {
+    mavenCentral()
+}

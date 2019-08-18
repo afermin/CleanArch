@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+
+    defaultConfig {
+        applicationId "com.example.cleanarch"
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode globalConfiguration["androidVersionCode"]
+        versionName globalConfiguration["androidVersionName"]
+
+        testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
+        multiDexEnabled true
+
+    }
+    buildTypes {
+        debug{
+            testCoverageEnabled = true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility = '1.8'
+        sourceCompatibility = '1.8'
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    lintOptions {
+        disable "ResourceType"
+    }
+}
+
+dependencies {
+    implementation project(":domain")
+    implementation project(":data")
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+
+    // RxJava and RxAndroid
+    implementation libs.rxJava
+    implementation libs.rxAndroid
+
+    // JUnit
+    testImplementation libs.junit
+
+    // Mockito Kotlin
+    testImplementation libs.mockitoKotlin
+
+}
