@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CleanArch</string>
+    <string name="error_time_out">Looks like the server is taking to long to respond, please try again in sometime!
+    </string>
+    <string name="error_internet">Looks like you have an unstable network at the moment, please try again when network
+        stabilizes!
+    </string>
+    <string name="error_generic">Looks like the server is taking to long to respond, this can be caused by either poor
+        connectivity or an error with our servers. Please try again in a while!
+    </string>
+</resources>

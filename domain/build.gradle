@@ -1,10 +1,9 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
-
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
 
     // RxJava and RxAndroid
@@ -17,11 +16,16 @@ dependencies {
 
     // Mockito Kotlin
     testImplementation libs.mockitoKotlin
+
+    // Koin
+    implementation libs.koinAndroid
+    implementation libs.koinScope
 }
 
 repositories {
     mavenCentral()
     google()
+    jcenter()
 }
 
 compileKotlin {
