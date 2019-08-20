@@ -88,6 +88,18 @@ dependencies {
     implementation libs.koinAndroid
     implementation libs.koinScope
 
+    // Room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    // Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$roomVersion"
+
+    // RxJava support for Room
+    implementation "androidx.room:room-rxjava2:$roomVersion"
+
+    // Test helpers
+    testImplementation "androidx.room:room-testing:$roomVersion"
 }
 
 repositories {

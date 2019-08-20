@@ -10,6 +10,7 @@ buildscript {
         rxJavaVersion = "2.1.6"
         koinVersion = "2.0.1"
         navVersion = "2.2.0-alpha01"
+        roomVersion = "2.2.0-alpha02"
         libs = [
                 rxJava       : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
                 rxAndroid    : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
